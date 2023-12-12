@@ -3,12 +3,22 @@ using Mamba.Data.DAL;
 using Microsoft.AspNetCore.Identity;
 using Mamba.Core.Repostories.Interfaces;
 using Mamba.Core.Models;
+using Mamba.Business.Services.Implementations;
+using Mamba.Business.Services.Interfaces;
+using Mamba.Data.Repostories.Implementations;
+using Mamba.MVC.Areas.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
-//builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<IProfessionService, ProfessionService>();
+builder.Services.AddScoped<IProfessionRepository, ProfessionRepository>();
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+builder.Services.AddScoped<LayoutService>();
+
 
 
 builder.Services.AddSession(opt =>
